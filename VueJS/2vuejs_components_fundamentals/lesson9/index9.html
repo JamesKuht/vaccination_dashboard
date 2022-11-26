@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="app">
+        <h1>Vue.js slots fundamentals</h1>
+        <todo-item>Buy bananas</todo-item>
+        <todo-item>Eat bananas</todo-item>
+        <todo-item>Celebrate!!!!
+            <!--# is the abbreviation for 'v-slot'-->
+            <template #description>
+                <p>Bananas are so good for you :) </p>
+            </template>
+            <template #button-text>Highlight!</template>
+        </todo-item>
+    </div>
+
+    <script type="text/x-template" id="todo-item-template">
+        <div>
+            <input type="checkbox" v-model="done">
+            <!--we have put the slot within a span, because otherwise the slot will be replaced by the data we have input - ignoring the formatting we've applied-->
+            <span :class="{ done }">
+                <slot></slot>
+            </span>
+            <slot name="description"></slot>
+            <!--note below, that the html text put in is the 'default', it will be replaced if there is an input into the component-->
+            <button><slot name="button-text">Highlight</slot></button>
+        </div>
+    </script>
+    <style>
+        .done{
+            color:green;
+            text-decoration:line-through;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3.2.42/dist/vue.global.js"></script>
+    <script src="app9.js"></script>
+</body>
+
+</html>

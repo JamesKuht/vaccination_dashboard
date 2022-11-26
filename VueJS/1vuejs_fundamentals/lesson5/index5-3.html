@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Shopping List App</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+    <div id="shopping-list">
+        <!--Vue uses 'double moustache syntax' to insert things into the page-->
+        <h1>{{header || 'Welcome'}}</h1>
+        <input v-model.lazy="newItem" type="text" placeholder="Add an item">
+        <label>
+            <input type="checkbox" v-model="newItemHighPriority">High Priority
+        </label>
+       
+        <ul>
+            <li v-for="item in items" :key="item.id">{{item.label}}</li>
+        </ul>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.42/dist/vue.global.js"></script>
+    <script>
+        const shoppingListApp = Vue.createApp({
+            // here we're creating a data object where we can store data for our Vue application to use
+            data() {
+                return {
+                    header: "Shopping List App",
+                    newItem: "",
+                    newItemHighPriority: false,
+                    items: [
+                        {id: 1, label: "10 party hats"},
+                        {id: 2, label: "2 board games"},
+                        {id: 3, label: "20 cups"},
+                    ]
+                }
+            }
+        })
+        // here you are telling the Vue app where to run ('instantiate') 
+        .mount('#shopping-list')
+
+    </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Shopping List App</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+    <div id="shopping-list">
+        <!--Vue uses 'double moustache syntax' to insert things into the page-->
+        <h1>{{header}}</h1>
+        <!--One of the key features of vue is 'reactivity' see below how use of 'v-model' allows you to tether 
+            things togethert that otherwise would have been a nightmare in vanilla JS (i.e. you'd have to set 
+            up an event listener on the input etc)-->
+        <input v-model="header">
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.42/dist/vue.global.js"></script>
+    <script>
+        const shoppingList = Vue.createApp({
+            // here we're creating a data object where we can store data for our Vue application to use
+            data(){
+                return {
+                    header: "Vue is ready to party"
+                }
+            }
+        })
+        // here you are telling the Vue app where to run ('instantiate') 
+        .mount('#shopping-list')
+
+    </script>
+    </body>
+</html>
