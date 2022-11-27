@@ -11,10 +11,20 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/destination/:id',
+      path: '/destination/:id/:slug',
       name: 'destination.show',
-      component: ()=>import('@/views/DestinationShow.vue')
-    }
+      component: ()=>import('@/views/DestinationShow.vue'),
+      props: route=> ({...route.params, id: parseInt(route.params.id)}),
+      children:[
+        {
+          path: ':experienceSlug',
+          name: 'experience.show',
+          component: () => import('@/views/ExperienceShow.vue'),
+          props: route=> ({...route.params, id: parseInt(route.params.id)})
+        }
+      ]
+    },
+    
   ]
 })
 
